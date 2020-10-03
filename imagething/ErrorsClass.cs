@@ -11,7 +11,8 @@ namespace imagething
         ColorNotChosen,
         ImageNotLoaded,
         BmpNotLoaded,
-        OptionNotChosen
+        OptionNotChosen,
+        TextNotANumber
     }
 
     class ErrorsClass
@@ -25,6 +26,7 @@ namespace imagething
             ErrorMassages.Add(ErrorCodes.ImageNotLoaded, "Please open an image first");
             ErrorMassages.Add(ErrorCodes.BmpNotLoaded, "Please edit the image first");
             ErrorMassages.Add(ErrorCodes.OptionNotChosen, "Please choose a filter first");
+            ErrorMassages.Add(ErrorCodes.TextNotANumber, "Enter a number beteen 0 and 255");
         }
 
         public static void PrintMassage(ErrorCodes massageCode)

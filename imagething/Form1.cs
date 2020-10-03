@@ -34,6 +34,7 @@ namespace imagething
         int holder;
         Point firstPoint;
         Point secondPoint;
+        Color color = Color.White;
         enum filters
         {
             firstFilter,
@@ -112,7 +113,7 @@ namespace imagething
                         }
                         break;
                     case "No background":
-                        bmp = StudentUtilities.Nobackground(origional);
+                        bmp = StudentUtilities.RemoveBackground(origional, color, trackBar1.Value);
                         break;
                     case "B&W":
                         bmp = StudentUtilities.ToGreyscale(origional);
@@ -239,6 +240,9 @@ namespace imagething
 
             switch (imageFilterBox.SelectedItem.ToString())
             {
+                case "No background":
+                    ChangeVisible_RemoveBackground(true);
+                    break;
                 case "No Color":
                     moreOptions.Visible = true;
                     checkedListBox1.Visible = true;
@@ -337,7 +341,10 @@ namespace imagething
 
         void ResetMenus()
         {
-            #region clear
+            #region Remove Background
+
+            ChangeVisible_RemoveBackground(false);
+
             moreOptions.Visible = false;
             moreOptions.Items.Clear();
             secondImagePath.Visible = false;
@@ -475,6 +482,68 @@ namespace imagething
                 }
             }
         }
+
+        #endregion
+        private void ColorPickerButton_Click(object sender, EventArgs e)
+        {
+            if (colorDialog1.ShowDialog() != DialogResult.Cancel)
+            {
+                ColorPickerButton.BackColor = colorDialog1.Color;
+            }
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            thresholdTextBox.Text = trackBar1.Value.ToString();
+        }
+        private void thresholdTextBox_TextChanged_1(object sender, EventArgs e)
+        {
+            if (int.TryParse(thresholdTextBox.Text, out _))
+            {
+                int num = int.Parse(thresholdTextBox.Text);
+                if (num >= 0 && num <= 255)
+                {
+                    trackBar1.Value = num;
+                }
+                else
+                {
+                    ErrorsClass.PrintMassage(ErrorCodes.TextNotANumber);
+                    thresholdTextBox.Text = trackBar1.Value.ToString();
+                }
+            }
+            else
+            {
+                ErrorsClass.PrintMassage(ErrorCodes.TextNotANumber);
+                thresholdTextBox.Text = trackBar1.Value.ToString();
+            }
+        }
+
+
+        #region ChangeButtonsVisiblity
+        void ChangeVisible_RemoveBackground(bool isVisible)
+        {
+            ColorPickerButton.Visible = isVisible;
+            colorLabel.Visible = isVisible;
+            thresholdLabel.Visible = isVisible;
+            thresholdTextBox.Visible = isVisible;
+            trackBar1.Visible = isVisible;
+            if (isVisible)
+            {
+                trackBar1.Value = 50;
+                thresholdTextBox.Text = "50";
+            }
+        }
+
+        void ChangeVisible_NoColor(bool isVisible)
+        {
+
+        }
+
+        //Combine
+        //Threshold
+        //bluer Exept
+        //bluer Just
+        #endregion
+
     }
-    #endregion
 }

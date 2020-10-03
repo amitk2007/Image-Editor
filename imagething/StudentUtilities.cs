@@ -279,7 +279,28 @@ namespace DigitalImageProcessing
             {
                 return true;
             }
-            if (color.G >= 250 && color.G >= 250 && color.B >= 250)
+            if (color.R >= 250 && color.G >= 250 && color.B >= 250)
+            {
+                return true;
+            }
+            return false;
+        }
+        public static bool IsNearColor(Color color, Color origin, int threshold)
+        {
+            if (origin.A == 0)
+            {
+                return true;
+            }
+            if (origin.R.IsBetween(color.R, threshold) && origin.G.IsBetween(color.G, threshold) && origin.B.IsBetween(color.B, threshold))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool IsBetween(this Byte number, int middle, int threshold)
+        {
+            if (number <= middle + threshold && number >= middle - threshold)
             {
                 return true;
             }
@@ -322,14 +343,14 @@ namespace DigitalImageProcessing
             return bitmap;
         }
 
-        public static Bitmap Nobackground(Bitmap bmp)
+        public static Bitmap RemoveBackground(Bitmap bmp, Color color, int threshold)
         {
             Bitmap returnbit = new Bitmap(bmp.Width, bmp.Height);
             for (int i = 0; i < bmp.Width; i++)
             {
                 for (int j = 0; j < bmp.Height; j++)
                 {
-                    if (!IsWhite(bmp.GetPixel(i, j)))
+                    if (!IsNearColor(bmp.GetPixel(i, j), color, threshold))
                     {
                         returnbit.SetPixel(i, j, bmp.GetPixel(i, j));
                     }
