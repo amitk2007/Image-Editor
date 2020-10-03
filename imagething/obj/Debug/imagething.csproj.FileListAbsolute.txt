@@ -1,0 +1,19 @@
+c:\users\amitk\documents\visual studio 2015\Projects\imagething\imagething\bin\Debug\imagething.exe.config
+c:\users\amitk\documents\visual studio 2015\Projects\imagething\imagething\bin\Debug\imagething.exe
+c:\users\amitk\documents\visual studio 2015\Projects\imagething\imagething\bin\Debug\imagething.pdb
+c:\users\amitk\documents\visual studio 2015\Projects\imagething\imagething\obj\Debug\imagething.Form1.resources
+c:\users\amitk\documents\visual studio 2015\Projects\imagething\imagething\obj\Debug\imagething.Properties.Resources.resources
+c:\users\amitk\documents\visual studio 2015\Projects\imagething\imagething\obj\Debug\imagething.csproj.GenerateResource.Cache
+c:\users\amitk\documents\visual studio 2015\Projects\imagething\imagething\obj\Debug\imagething.exe
+c:\users\amitk\documents\visual studio 2015\Projects\imagething\imagething\obj\Debug\imagething.pdb
+c:\users\amitk\documents\visual studio 2015\Projects\imagething\imagething\obj\Debug\imagething.csprojResolveAssemblyReference.cache
+C:\Users\Kalan\Downloads\imagething\imagething\bin\Debug\imagething.exe.config
+C:\Users\Kalan\Downloads\imagething\imagething\bin\Debug\imagething.exe
+C:\Users\Kalan\Downloads\imagething\imagething\bin\Debug\imagething.pdb
+C:\Users\Kalan\Downloads\imagething\imagething\obj\Debug\imagething.csprojAssemblyReference.cache
+C:\Users\Kalan\Downloads\imagething\imagething\obj\Debug\imagething.Form1.resources
+C:\Users\Kalan\Downloads\imagething\imagething\obj\Debug\imagething.Properties.Resources.resources
+C:\Users\Kalan\Downloads\imagething\imagething\obj\Debug\imagething.csproj.GenerateResource.cache
+C:\Users\Kalan\Downloads\imagething\imagething\obj\Debug\imagething.csproj.CoreCompileInputs.cache
+C:\Users\Kalan\Downloads\imagething\imagething\obj\Debug\imagething.exe
+C:\Users\Kalan\Downloads\imagething\imagething\obj\Debug\imagething.pdb
