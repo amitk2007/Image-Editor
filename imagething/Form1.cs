@@ -103,9 +103,14 @@ namespace imagething
                         bmp = origional;
                         break;
                     case "No Color":
-                        if (moreOptions.SelectedItem != null)
+                        if (checkedListBox1.CheckedItems.Count != 0)
                         {
-                            bmp = StudentUtilities.NoColor(origional, moreOptions.SelectedItem.ToString());
+                            string[] colors = new string[checkedListBox1.CheckedItems.Count];
+                            for (int i = 0; i < checkedListBox1.CheckedItems.Count; i++)
+                            {
+                                colors[i] = checkedListBox1.CheckedItems[i].ToString();
+                            }
+                            bmp = StudentUtilities.NoColor(origional, colors);
                         }
                         else
                         {
@@ -244,11 +249,7 @@ namespace imagething
                     ChangeVisible_RemoveBackground(true);
                     break;
                 case "No Color":
-                    moreOptions.Visible = true;
-                    checkedListBox1.Visible = true;
-                    checkedListBox1.Items.Add("red");
-                    checkedListBox1.Items.Add("green");
-                    checkedListBox1.Items.Add("blue");
+                    ChangeVisible_NoColor(true);
                     break;
                 case "Combine":
                     secondImagePath.Visible = true;
@@ -344,7 +345,7 @@ namespace imagething
             #region Remove Background
 
             ChangeVisible_RemoveBackground(false);
-
+            ChangeVisible_NoColor(false);
             moreOptions.Visible = false;
             moreOptions.Items.Clear();
             secondImagePath.Visible = false;
@@ -353,7 +354,6 @@ namespace imagething
             filterValus.Text = "";
             point1.Visible = false;
             point2.Visible = false;
-            checkedListBox1.Visible = false;
             #endregion
         }
 
@@ -522,21 +522,17 @@ namespace imagething
         #region ChangeButtonsVisiblity
         void ChangeVisible_RemoveBackground(bool isVisible)
         {
-            ColorPickerButton.Visible = isVisible;
-            colorLabel.Visible = isVisible;
-            thresholdLabel.Visible = isVisible;
-            thresholdTextBox.Visible = isVisible;
-            trackBar1.Visible = isVisible;
+            noBackgroundGroupBox.Visible = isVisible;
+
             if (isVisible)
             {
                 trackBar1.Value = 50;
                 thresholdTextBox.Text = "50";
             }
         }
-
         void ChangeVisible_NoColor(bool isVisible)
         {
-
+            noColorGroupBox.Visible = isVisible;
         }
 
         //Combine

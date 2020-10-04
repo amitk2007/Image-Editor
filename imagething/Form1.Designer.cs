@@ -59,10 +59,15 @@
             this.colorLabel = new System.Windows.Forms.Label();
             this.thresholdLabel = new System.Windows.Forms.Label();
             this.thresholdTextBox = new System.Windows.Forms.TextBox();
+            this.noBackgroundGroupBox = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.noColorGroupBox = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            this.noBackgroundGroupBox.SuspendLayout();
+            this.noColorGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -132,7 +137,7 @@
             // moreOptions
             // 
             this.moreOptions.FormattingEnabled = true;
-            this.moreOptions.Location = new System.Drawing.Point(190, 278);
+            this.moreOptions.Location = new System.Drawing.Point(203, 405);
             this.moreOptions.Name = "moreOptions";
             this.moreOptions.Size = new System.Drawing.Size(90, 21);
             this.moreOptions.TabIndex = 9;
@@ -140,7 +145,7 @@
             // 
             // secondImagePath
             // 
-            this.secondImagePath.Location = new System.Drawing.Point(109, 276);
+            this.secondImagePath.Location = new System.Drawing.Point(122, 403);
             this.secondImagePath.Name = "secondImagePath";
             this.secondImagePath.Size = new System.Drawing.Size(75, 23);
             this.secondImagePath.TabIndex = 10;
@@ -161,7 +166,7 @@
             // 
             // filterValus
             // 
-            this.filterValus.Location = new System.Drawing.Point(194, 305);
+            this.filterValus.Location = new System.Drawing.Point(207, 432);
             this.filterValus.Name = "filterValus";
             this.filterValus.Size = new System.Drawing.Size(72, 20);
             this.filterValus.TabIndex = 12;
@@ -170,7 +175,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(191, 330);
+            this.button1.Location = new System.Drawing.Point(204, 457);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 13;
@@ -232,10 +237,16 @@
             // 
             // checkedListBox1
             // 
+            this.checkedListBox1.BackColor = System.Drawing.Color.White;
+            this.checkedListBox1.CheckOnClick = true;
             this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(50, 256);
+            this.checkedListBox1.Items.AddRange(new object[] {
+            "Red",
+            "Green",
+            "Blue"});
+            this.checkedListBox1.Location = new System.Drawing.Point(22, 44);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(120, 64);
+            this.checkedListBox1.Size = new System.Drawing.Size(117, 64);
             this.checkedListBox1.TabIndex = 19;
             // 
             // RGBLable
@@ -305,7 +316,7 @@
             // ColorPickerButton
             // 
             this.ColorPickerButton.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ColorPickerButton.Location = new System.Drawing.Point(75, 142);
+            this.ColorPickerButton.Location = new System.Drawing.Point(107, 19);
             this.ColorPickerButton.Name = "ColorPickerButton";
             this.ColorPickerButton.Size = new System.Drawing.Size(25, 26);
             this.ColorPickerButton.TabIndex = 22;
@@ -314,7 +325,7 @@
             // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(109, 186);
+            this.trackBar1.Location = new System.Drawing.Point(108, 61);
             this.trackBar1.Maximum = 255;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(143, 45);
@@ -326,16 +337,16 @@
             // colorLabel
             // 
             this.colorLabel.AutoSize = true;
-            this.colorLabel.Location = new System.Drawing.Point(12, 149);
+            this.colorLabel.Location = new System.Drawing.Point(12, 24);
             this.colorLabel.Name = "colorLabel";
-            this.colorLabel.Size = new System.Drawing.Size(31, 13);
+            this.colorLabel.Size = new System.Drawing.Size(81, 13);
             this.colorLabel.TabIndex = 24;
-            this.colorLabel.Text = "Color";
+            this.colorLabel.Text = "Color to remove";
             // 
             // thresholdLabel
             // 
             this.thresholdLabel.AutoSize = true;
-            this.thresholdLabel.Location = new System.Drawing.Point(10, 186);
+            this.thresholdLabel.Location = new System.Drawing.Point(9, 61);
             this.thresholdLabel.Name = "thresholdLabel";
             this.thresholdLabel.Size = new System.Drawing.Size(54, 13);
             this.thresholdLabel.TabIndex = 25;
@@ -343,7 +354,7 @@
             // 
             // thresholdTextBox
             // 
-            this.thresholdTextBox.Location = new System.Drawing.Point(70, 186);
+            this.thresholdTextBox.Location = new System.Drawing.Point(69, 61);
             this.thresholdTextBox.MaxLength = 3;
             this.thresholdTextBox.Name = "thresholdTextBox";
             this.thresholdTextBox.Size = new System.Drawing.Size(33, 20);
@@ -351,18 +362,46 @@
             this.thresholdTextBox.WordWrap = false;
             this.thresholdTextBox.TextChanged += new System.EventHandler(this.thresholdTextBox_TextChanged_1);
             // 
+            // noBackgroundGroupBox
+            // 
+            this.noBackgroundGroupBox.Controls.Add(this.noColorGroupBox);
+            this.noBackgroundGroupBox.Controls.Add(this.thresholdTextBox);
+            this.noBackgroundGroupBox.Controls.Add(this.thresholdLabel);
+            this.noBackgroundGroupBox.Controls.Add(this.colorLabel);
+            this.noBackgroundGroupBox.Controls.Add(this.trackBar1);
+            this.noBackgroundGroupBox.Controls.Add(this.ColorPickerButton);
+            this.noBackgroundGroupBox.Location = new System.Drawing.Point(8, 133);
+            this.noBackgroundGroupBox.Name = "noBackgroundGroupBox";
+            this.noBackgroundGroupBox.Size = new System.Drawing.Size(278, 108);
+            this.noBackgroundGroupBox.TabIndex = 27;
+            this.noBackgroundGroupBox.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(15, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(206, 13);
+            this.label2.TabIndex = 28;
+            this.label2.Text = "What color channel do you want to keep?";
+            // 
+            // noColorGroupBox
+            // 
+            this.noColorGroupBox.Controls.Add(this.label2);
+            this.noColorGroupBox.Controls.Add(this.checkedListBox1);
+            this.noColorGroupBox.Location = new System.Drawing.Point(6, 0);
+            this.noColorGroupBox.Name = "noColorGroupBox";
+            this.noColorGroupBox.Size = new System.Drawing.Size(237, 114);
+            this.noColorGroupBox.TabIndex = 29;
+            this.noColorGroupBox.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(860, 515);
-            this.Controls.Add(this.thresholdTextBox);
-            this.Controls.Add(this.thresholdLabel);
-            this.Controls.Add(this.colorLabel);
-            this.Controls.Add(this.trackBar1);
-            this.Controls.Add(this.ColorPickerButton);
+            this.Controls.Add(this.noBackgroundGroupBox);
             this.Controls.Add(this.RGBLable);
-            this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.Bcol);
             this.Controls.Add(this.Gcol);
             this.Controls.Add(this.Rcol);
@@ -387,6 +426,10 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            this.noBackgroundGroupBox.ResumeLayout(false);
+            this.noBackgroundGroupBox.PerformLayout();
+            this.noColorGroupBox.ResumeLayout(false);
+            this.noColorGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -424,6 +467,9 @@
         private System.Windows.Forms.Label colorLabel;
         private System.Windows.Forms.Label thresholdLabel;
         private System.Windows.Forms.TextBox thresholdTextBox;
+        private System.Windows.Forms.GroupBox noBackgroundGroupBox;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox noColorGroupBox;
     }
 }
 

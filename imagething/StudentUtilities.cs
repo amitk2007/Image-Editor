@@ -131,38 +131,21 @@ namespace DigitalImageProcessing
                  }
              return bitmap;
          }*/
-
-        public static Bitmap NoColor(Bitmap image, string deletcolor)
+        #region Filters
+        public static Bitmap NoColor(Bitmap image, string[] deletColor)
         {
             Bitmap bitmap = new Bitmap(image.Width, image.Height);
-            switch (deletcolor)
-            {
-                case "red":
-                    for (int i = 0; i < image.Width; i++)
-                        for (int j = 0; j < image.Height; j++)
-                        {
-                            Color color = image.GetPixel(i, j);
-                            bitmap.SetPixel(i, j, Color.FromArgb(0, color.G, color.B));
-                        }
-                    break;
-                case "green":
-                    for (int i = 0; i < image.Width; i++)
-                        for (int j = 0; j < image.Height; j++)
-                        {
-                            Color color = image.GetPixel(i, j);
-                            bitmap.SetPixel(i, j, Color.FromArgb(color.R, 0, color.B));
-                        }
-                    break;
-                case "blue":
-                    for (int i = 0; i < image.Width; i++)
-                        for (int j = 0; j < image.Height; j++)
-                        {
-                            Color color = image.GetPixel(i, j);
-                            bitmap.SetPixel(i, j, Color.FromArgb(color.R, color.G, 0));
-                        }
-                    break;
-            }
+            int R, G, B;
 
+            for (int i = 0; i < image.Width; i++)
+                for (int j = 0; j < image.Height; j++)
+                {
+                    Color color = image.GetPixel(i, j);
+                    R = IsStringInArray("Red", deletColor) ? 0 : color.R;
+                    G = IsStringInArray("Green", deletColor) ? 0 : color.G;
+                    B = IsStringInArray("Blue", deletColor) ? 0 : color.B;
+                    bitmap.SetPixel(i, j, Color.FromArgb(R, G, B));
+                }
             return bitmap;
         }
 
@@ -271,40 +254,6 @@ namespace DigitalImageProcessing
                     }
                 }
             return bitmap;
-        }
-
-        public static bool IsWhite(Color color)
-        {
-            if (color.A == 0)
-            {
-                return true;
-            }
-            if (color.R >= 250 && color.G >= 250 && color.B >= 250)
-            {
-                return true;
-            }
-            return false;
-        }
-        public static bool IsNearColor(Color color, Color origin, int threshold)
-        {
-            if (origin.A == 0)
-            {
-                return true;
-            }
-            if (origin.R.IsBetween(color.R, threshold) && origin.G.IsBetween(color.G, threshold) && origin.B.IsBetween(color.B, threshold))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public static bool IsBetween(this Byte number, int middle, int threshold)
-        {
-            if (number <= middle + threshold && number >= middle - threshold)
-            {
-                return true;
-            }
-            return false;
         }
 
         public static Bitmap SetMiddle(Bitmap changeto, Bitmap change)
@@ -440,6 +389,54 @@ namespace DigitalImageProcessing
             }
             return filterd;
         }
+        #endregion
+
+        #region Help Functions
+        public static bool IsStringInArray(string str, string[] arr)
+        {
+            foreach (string item in arr)
+            {
+                if (str == item)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public static bool IsWhite(Color color)
+        {
+            if (color.A == 0)
+            {
+                return true;
+            }
+            if (color.R >= 250 && color.G >= 250 && color.B >= 250)
+            {
+                return true;
+            }
+            return false;
+        }
+        public static bool IsNearColor(Color color, Color origin, int threshold)
+        {
+            if (origin.A == 0)
+            {
+                return true;
+            }
+            if (origin.R.IsBetween(color.R, threshold) && origin.G.IsBetween(color.G, threshold) && origin.B.IsBetween(color.B, threshold))
+            {
+                return true;
+            }
+            return false;
+        }
+        public static bool IsBetween(this Byte number, int middle, int threshold)
+        {
+            if (number <= middle + threshold && number >= middle - threshold)
+            {
+                return true;
+            }
+            return false;
+        }
+        #endregion
+
 
 
         /*  public static void check(Bitmap bit)
