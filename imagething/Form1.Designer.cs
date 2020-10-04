@@ -33,7 +33,6 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.change = new System.Windows.Forms.Button();
-            this.savepath = new System.Windows.Forms.Button();
             this.imageFilterBox = new System.Windows.Forms.ComboBox();
             this.moreOptions = new System.Windows.Forms.ComboBox();
             this.secondImagePath = new System.Windows.Forms.Button();
@@ -60,14 +59,17 @@
             this.thresholdLabel = new System.Windows.Forms.Label();
             this.thresholdTextBox = new System.Windows.Forms.TextBox();
             this.noBackgroundGroupBox = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.noColorGroupBox = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.colorSwitchGroupBox = new System.Windows.Forms.GroupBox();
+            this.imageChangerButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.noBackgroundGroupBox.SuspendLayout();
             this.noColorGroupBox.SuspendLayout();
+            this.colorSwitchGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -103,16 +105,6 @@
             this.change.UseVisualStyleBackColor = true;
             this.change.Click += new System.EventHandler(this.change_Click);
             // 
-            // savepath
-            // 
-            this.savepath.Location = new System.Drawing.Point(13, 438);
-            this.savepath.Name = "savepath";
-            this.savepath.Size = new System.Drawing.Size(147, 54);
-            this.savepath.TabIndex = 4;
-            this.savepath.Text = "Save image";
-            this.savepath.UseVisualStyleBackColor = true;
-            this.savepath.Click += new System.EventHandler(this.savepath_Click);
-            // 
             // imageFilterBox
             // 
             this.imageFilterBox.CausesValidation = false;
@@ -121,13 +113,13 @@
             "Default image",
             "No Color",
             "No background",
-            "B&W",
+            "Grey Scale",
             "Combine",
             "Threshold",
             "bluer",
             "bluer Exept",
             "bluer Just",
-            "Swich Colors"});
+            "Color Switch"});
             this.imageFilterBox.Location = new System.Drawing.Point(50, 60);
             this.imageFilterBox.Name = "imageFilterBox";
             this.imageFilterBox.Size = new System.Drawing.Size(90, 21);
@@ -206,7 +198,7 @@
             "Red",
             "Green",
             "Blue"});
-            this.Rcol.Location = new System.Drawing.Point(8, 374);
+            this.Rcol.Location = new System.Drawing.Point(12, 40);
             this.Rcol.Name = "Rcol";
             this.Rcol.Size = new System.Drawing.Size(51, 21);
             this.Rcol.TabIndex = 16;
@@ -218,7 +210,7 @@
             "Red",
             "Green",
             "Blue"});
-            this.Gcol.Location = new System.Drawing.Point(65, 374);
+            this.Gcol.Location = new System.Drawing.Point(69, 40);
             this.Gcol.Name = "Gcol";
             this.Gcol.Size = new System.Drawing.Size(51, 21);
             this.Gcol.TabIndex = 17;
@@ -230,7 +222,7 @@
             "Red",
             "Green",
             "Blue"});
-            this.Bcol.Location = new System.Drawing.Point(122, 374);
+            this.Bcol.Location = new System.Drawing.Point(126, 40);
             this.Bcol.Name = "Bcol";
             this.Bcol.Size = new System.Drawing.Size(48, 21);
             this.Bcol.TabIndex = 18;
@@ -252,7 +244,7 @@
             // RGBLable
             // 
             this.RGBLable.AutoSize = true;
-            this.RGBLable.Location = new System.Drawing.Point(20, 347);
+            this.RGBLable.Location = new System.Drawing.Point(24, 13);
             this.RGBLable.Name = "RGBLable";
             this.RGBLable.Size = new System.Drawing.Size(140, 13);
             this.RGBLable.TabIndex = 20;
@@ -364,7 +356,6 @@
             // 
             // noBackgroundGroupBox
             // 
-            this.noBackgroundGroupBox.Controls.Add(this.noColorGroupBox);
             this.noBackgroundGroupBox.Controls.Add(this.thresholdTextBox);
             this.noBackgroundGroupBox.Controls.Add(this.thresholdLabel);
             this.noBackgroundGroupBox.Controls.Add(this.colorLabel);
@@ -376,6 +367,16 @@
             this.noBackgroundGroupBox.TabIndex = 27;
             this.noBackgroundGroupBox.TabStop = false;
             // 
+            // noColorGroupBox
+            // 
+            this.noColorGroupBox.Controls.Add(this.label2);
+            this.noColorGroupBox.Controls.Add(this.checkedListBox1);
+            this.noColorGroupBox.Location = new System.Drawing.Point(221, 256);
+            this.noColorGroupBox.Name = "noColorGroupBox";
+            this.noColorGroupBox.Size = new System.Drawing.Size(237, 114);
+            this.noColorGroupBox.TabIndex = 29;
+            this.noColorGroupBox.TabStop = false;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -385,27 +386,38 @@
             this.label2.TabIndex = 28;
             this.label2.Text = "What color channel do you want to keep?";
             // 
-            // noColorGroupBox
+            // colorSwitchGroupBox
             // 
-            this.noColorGroupBox.Controls.Add(this.label2);
-            this.noColorGroupBox.Controls.Add(this.checkedListBox1);
-            this.noColorGroupBox.Location = new System.Drawing.Point(6, 0);
-            this.noColorGroupBox.Name = "noColorGroupBox";
-            this.noColorGroupBox.Size = new System.Drawing.Size(237, 114);
-            this.noColorGroupBox.TabIndex = 29;
-            this.noColorGroupBox.TabStop = false;
+            this.colorSwitchGroupBox.Controls.Add(this.RGBLable);
+            this.colorSwitchGroupBox.Controls.Add(this.Bcol);
+            this.colorSwitchGroupBox.Controls.Add(this.Gcol);
+            this.colorSwitchGroupBox.Controls.Add(this.Rcol);
+            this.colorSwitchGroupBox.Location = new System.Drawing.Point(8, 289);
+            this.colorSwitchGroupBox.Name = "colorSwitchGroupBox";
+            this.colorSwitchGroupBox.Size = new System.Drawing.Size(194, 110);
+            this.colorSwitchGroupBox.TabIndex = 28;
+            this.colorSwitchGroupBox.TabStop = false;
+            // 
+            // imageChangerButton
+            // 
+            this.imageChangerButton.Location = new System.Drawing.Point(26, 432);
+            this.imageChangerButton.Name = "imageChangerButton";
+            this.imageChangerButton.Size = new System.Drawing.Size(114, 63);
+            this.imageChangerButton.TabIndex = 30;
+            this.imageChangerButton.Text = "Use This Image";
+            this.imageChangerButton.UseVisualStyleBackColor = true;
+            this.imageChangerButton.Click += new System.EventHandler(this.imageChangerButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(860, 515);
+            this.Controls.Add(this.imageChangerButton);
+            this.Controls.Add(this.noColorGroupBox);
             this.Controls.Add(this.noBackgroundGroupBox);
-            this.Controls.Add(this.RGBLable);
-            this.Controls.Add(this.Bcol);
-            this.Controls.Add(this.Gcol);
-            this.Controls.Add(this.Rcol);
             this.Controls.Add(this.point2);
+            this.Controls.Add(this.colorSwitchGroupBox);
             this.Controls.Add(this.point1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.filterValus);
@@ -413,7 +425,6 @@
             this.Controls.Add(this.secondImagePath);
             this.Controls.Add(this.moreOptions);
             this.Controls.Add(this.imageFilterBox);
-            this.Controls.Add(this.savepath);
             this.Controls.Add(this.change);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
@@ -430,6 +441,8 @@
             this.noBackgroundGroupBox.PerformLayout();
             this.noColorGroupBox.ResumeLayout(false);
             this.noColorGroupBox.PerformLayout();
+            this.colorSwitchGroupBox.ResumeLayout(false);
+            this.colorSwitchGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -441,7 +454,6 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button change;
-        private System.Windows.Forms.Button savepath;
         private System.Windows.Forms.ComboBox imageFilterBox;
         private System.Windows.Forms.ComboBox moreOptions;
         private System.Windows.Forms.Button secondImagePath;
@@ -470,6 +482,8 @@
         private System.Windows.Forms.GroupBox noBackgroundGroupBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox noColorGroupBox;
+        private System.Windows.Forms.GroupBox colorSwitchGroupBox;
+        private System.Windows.Forms.Button imageChangerButton;
     }
 }
 

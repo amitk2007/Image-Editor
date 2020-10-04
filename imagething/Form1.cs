@@ -27,8 +27,14 @@ namespace imagething
         string outputFolderPath = @"\Oututs\";
         string filename;
         string tosave;
+        /// <summary>
+        /// The image that the process in going on
+        /// </summary>
         Bitmap origional;
         Bitmap second;
+        /// <summary>
+        /// The curent image in use
+        /// </summary>
         Bitmap bmp;
         int[] filter;
         int holder;
@@ -120,7 +126,7 @@ namespace imagething
                     case "No background":
                         bmp = StudentUtilities.RemoveBackground(origional, color, trackBar1.Value);
                         break;
-                    case "B&W":
+                    case "Grey Scale":
                         bmp = StudentUtilities.ToGreyscale(origional);
                         break;
                     case "Combine":
@@ -224,7 +230,7 @@ namespace imagething
                             bmp = StudentUtilities.bluerJust(origional, GetPointFromText(point1.Text), GetPointFromText(point2.Text));
                         }
                         break;
-                    case "Swich Colors":
+                    case "Color Switch":
                         bmp = StudentUtilities.SwichColors(origional, Rcol.SelectedItem.ToString(), Gcol.SelectedItem.ToString(), Bcol.SelectedItem.ToString());
                         break;
 
@@ -271,6 +277,9 @@ namespace imagething
                     point2.Visible = true;
                     point1.Text = "{X=0,Y=0}";
                     point2.Text = "{X=0,Y=0}";
+                    break;
+                case "Color Switch":
+                    ChangeVisible_ColorsSwitch(true);
                     break;
             }
         }
@@ -346,6 +355,8 @@ namespace imagething
 
             ChangeVisible_RemoveBackground(false);
             ChangeVisible_NoColor(false);
+            ChangeVisible_ColorsSwitch(false);
+            //to fix!
             moreOptions.Visible = false;
             moreOptions.Items.Clear();
             secondImagePath.Visible = false;
@@ -526,6 +537,7 @@ namespace imagething
 
             if (isVisible)
             {
+                noBackgroundGroupBox.Location = new Point(0, 150);
                 trackBar1.Value = 50;
                 thresholdTextBox.Text = "50";
             }
@@ -533,13 +545,31 @@ namespace imagething
         void ChangeVisible_NoColor(bool isVisible)
         {
             noColorGroupBox.Visible = isVisible;
+            if (isVisible)
+            {
+                noColorGroupBox.Location = new Point(0, 150);
+            }
         }
-
+        void ChangeVisible_ColorsSwitch(bool isVisible)
+        {
+            colorSwitchGroupBox.Visible = isVisible;
+            if (isVisible)
+            {
+                colorSwitchGroupBox.Location = new Point(0, 150);
+                Rcol.SelectedItem = "Red";
+                Gcol.SelectedItem = "Green";
+                Bcol.SelectedItem = "Blue";
+            }
+        }
         //Combine
         //Threshold
         //bluer Exept
         //bluer Just
         #endregion
 
+        private void imageChangerButton_Click(object sender, EventArgs e)
+        {
+            origional = new Bitmap(pictureBox1.Image);
+        }
     }
 }
